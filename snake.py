@@ -1,4 +1,4 @@
-from turtle import Screen, Turtle
+from turtle import Turtle
 STARTING_POSITION = [(-20,0),(-40,0),(-60,0)] #CONSTANT
 MOVE_DISTANCE = 20
 #Snake should not be able to turn into the opposite side while moving
@@ -17,11 +17,18 @@ class Snake:
 
     def creat_snake(self):
         for position in STARTING_POSITION:
-            segment = Turtle("square")
-            segment.color("white")
-            segment.penup()
-            segment.goto(position)
-            self.segment_list.append(segment) #need to refer the attribute segment_list.hence need self Key word
+            self.add_segment(position)
+
+    def add_segment(self, position):
+        segment = Turtle("square")
+        segment.color("white")
+        segment.penup()
+        segment.goto(position)
+        self.segment_list.append(segment)  # need to refer the attribute segment_list.hence need self Key word
+
+    def extend(self):
+    # add a new segment to the snake's tial(last segment position)
+        self.add_segment(self.segment_list[-1].position())
 
     #method to move the snake
     def move(self):
