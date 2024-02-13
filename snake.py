@@ -26,6 +26,13 @@ class Snake:
         segment.goto(position)
         self.segment_list.append(segment)  # need to refer the attribute segment_list.hence need self Key word
 
+    def reset(self):
+        for segment in self.segment_list:
+            segment.goto(1000,1000)
+        self.segment_list.clear()
+        self.creat_snake()
+        self.head = self.segment_list[0]
+
     def extend(self):
     # add a new segment to the snake's tial(last segment position)
         self.add_segment(self.segment_list[-1].position())
@@ -37,6 +44,7 @@ class Snake:
             new_y = self.segment_list[seg_num - 1].ycor()  # new y cordinates of segment
             self.segment_list[seg_num].goto(new_x, new_y)  # assign the cordinate
           self.head.forward(MOVE_DISTANCE)
+
 
     def up(self):
         if self.head.heading() != DOWN:
